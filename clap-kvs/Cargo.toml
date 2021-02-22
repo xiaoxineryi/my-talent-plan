@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 clap = "2.32.0"
 clippy = "0.0.302"
+structopt = {version = "0.3"}

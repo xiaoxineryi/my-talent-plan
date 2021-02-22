@@ -2,6 +2,8 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/clap-kvs/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target" />
       <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/debug" />
       <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/atty" />
       <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/bitflags" />
