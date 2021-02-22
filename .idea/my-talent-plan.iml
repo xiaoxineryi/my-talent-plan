@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CPP_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/debug" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/atty" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/bitflags" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/clap" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/clap_kvs" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/implementors" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/kvs" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/src" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/strsim" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/textwrap" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/unicode_width" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/vec_map" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/ctypes" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/km" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/basetsd" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/cfg" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/devpropdef" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/guiddef" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/ktmtypes" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/minwindef" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/ntdef" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/rpc" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/rpcdce" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/rpcndr" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/windef" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/wtypes" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/shared/wtypesbase" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/ucrt" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/um" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/vc" />
+      <excludeFolder url="file://$MODULE_DIR$/clap-kvs/target/doc/winapi/winrt" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
