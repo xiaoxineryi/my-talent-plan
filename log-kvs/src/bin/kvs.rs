@@ -33,10 +33,16 @@ fn main() -> KvResult<()>{
     let mut kvStore = KvStore::open(path)?;
     match opt.command {
         Command::Set {key,value} =>{
+            println!("save the key:{},value:{}",key,value);
             kvStore.set(key,value);
         },
-        _ =>{
-            println!("no command ");
+        Command::Remove {key} =>{
+            println!("remove the key :{}",key);
+            kvStore.remove(key);
+        },
+        Command::Get {key} =>{
+            let value = kvStore.get(key)?;
+            println!("the value is {}",value.unwrap_or(" ".to_owned()));
         }
     }
     Ok(())

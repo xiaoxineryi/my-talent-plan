@@ -107,8 +107,8 @@ impl KvStore {
                 .expect("can't find log reader");
             reader.seek(SeekFrom::Start(cmd_pos.pos))?;
             let com_reader = reader.take(cmd_pos.len);
-            if let Command::Set {key,..} =serde_json::from_reader(com_reader)?{
-                Ok(Some(key))
+            if let Command::Set {key,value} =serde_json::from_reader(com_reader)?{
+                Ok(Some(value))
             }else{
                 Err(KvsError::UnexpectedCommandType)
             }
@@ -158,7 +158,7 @@ fn new_log_file(
 fn sorted_gen_list(path:&Path) -> KvResult<Vec<u64>>{
     let mut gen_list :Vec<u64> =fs::read_dir(&path)?
         .flat_map(|res| -> KvResult<_> {Ok(res?.path()) })
-        .filter(|path| path.is_file() && path.extension() == Some(".log".as_ref()))
+        .filter(|path| {path.is_file() && path.extension() == Some("log".as_ref())})
         .flat_map(|path|{
             path.file_name()
                 .and_then(OsStr::to_str)
