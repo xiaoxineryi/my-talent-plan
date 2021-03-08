@@ -61,7 +61,7 @@ fn serve<E:Engine>(engine:&mut E,tcp_stream:TcpStream) ->KvsResult<()>{
              })
         }
         Request::Remove {key} =>{
-            std::thread::sleep(Duration::from_secs(5));
+
             send_resp!(match engine.remove(key){
                 Ok(()) => RemoveResponse::Ok(()),
                 Err(msg) => RemoveResponse::Err(format!("{}",msg))

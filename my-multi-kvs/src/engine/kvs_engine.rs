@@ -4,11 +4,12 @@ use std::path::{PathBuf, Path};
 use std::sync::{Arc, RwLock};
 use std::collections::{BTreeMap, HashMap};
 use std::{fs, io};
-use std::io::{BufWriter, BufReader, Seek, Read, Write, SeekFrom};
+use std::io::{BufWriter, BufReader, Seek, Read, Write, SeekFrom, BufRead};
 use std::fs::{File, OpenOptions, read};
 use std::borrow::Borrow;
 use crate::common::Request;
 use serde_json::Deserializer;
+use std::time::Duration;
 
 /// 多线程并发实现数据库读写操作
 #[derive(Clone)]
@@ -62,7 +63,7 @@ impl KvsManager{
             // 若是set则保存 若是remove则清除对应的index
             match request {
                 Request::Set {key,..} =>{
-                    index.insert(key,CommandPos::new(self.temp_page,pos,next_pos as u64 -pos));
+                    index.insert(key,CommandPos::new(*number,pos,next_pos as u64 -pos));
                 }
                 Request::Remove {key} =>{
                     index.remove(&key);
@@ -81,9 +82,9 @@ impl KvsManager{
         let mut reader = BufReader::new(file.try_clone()?);
         // 指针移动到对应位置
         reader.seek(SeekFrom::Start(command_pos.pos))?;
-
-        let reader = reader.take(command_pos.len);
-        let e :Request= serde_json::from_reader(reader).unwrap();
+        let mut reader = reader.take(command_pos.len);
+        let buf = reader.fill_buf().unwrap();
+        let e :Request= serde_json::from_reader(&mut reader)?;
         match e{
             Request::Set {key,value} =>{
                 Ok(Some(value))
@@ -147,7 +148,7 @@ impl KvsEngine{
         let new = last + 1;
         create_new_file(&path,&mut managers,new);
 
-        let mut manager = KvsManager::new(path.clone(), managers, *last)?;
+        let mut manager = KvsManager::new(path.clone(), managers, new)?;
 
         // 遍历所有文件，得到所有的index
         for ind in files_number.as_slice(){
@@ -196,7 +197,12 @@ impl Engine for KvsEngine{
 
     fn remove(&self, key: String) -> KvsResult<()> {
         let command_pos = self.manager.remove(key.clone())?;
-        self.index.write().unwrap().insert(key,command_pos);
+        /// 要是直接合成一句的话，write就直接执行完就释放了，所以线程睡眠看起来没有起到效果
+        /// self.index.write().unwrap().insert(key,command_pos)?;
+        /// std::thread::sleep(Duration::from_secs(5));
+        let mut e =self.index.write().unwrap();
+        std::thread::sleep(Duration::from_secs(5));
+        e.insert(key,command_pos);
         Ok(())
     }
 }
@@ -216,7 +222,7 @@ fn get_files_number(path:&Path) -> KvsResult<Vec<u64>>{
         })
         .flatten()
         .collect();
-    println!("{:?}",files_number);
+
     files_number.sort_unstable();
     Ok(files_number)
 }
